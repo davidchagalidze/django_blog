@@ -7,13 +7,13 @@ services:
     expose:
       - "8000"
     links:
-      - postgres:postgres
+      - db:db
     volumes:
       - web-django:/usr/src/app
       - web-static:/usr/src/app/static
     environment:
       DEBUG: 'true'
-    command: /usr/local/bin/gunicorn docker_django.wsgi:application -w 2 -b :8000
+    command: gunicorn Blog.wsgi:application --bind 0.0.0.0:8000
 
   nginx:
     restart: always
@@ -25,14 +25,17 @@ services:
     links:
       - web:web
 
-  postgres:
+  db:
     restart: always
     image: postgres:latest
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data/
-
+    environment:
+      - POSTGRES_USER=postgress
+      - POSTGRES_PASSWORD=postgress
+      - POSTGRES_DB=postgress
 
 volumes:
   web-django:
