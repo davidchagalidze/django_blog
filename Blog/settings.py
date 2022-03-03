@@ -79,12 +79,13 @@ WSGI_APPLICATION = 'Blog.wsgi.application'
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': 'postgres',
-         'USER': 'postgres',
+         'NAME': 'postgress',
+         'USER': 'postgress',
          'HOST': 'db',
+         'PASSWORD': 'postgress',
          'PORT': 5432,
      }
- }
+}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
